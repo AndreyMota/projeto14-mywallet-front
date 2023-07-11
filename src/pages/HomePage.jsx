@@ -1,17 +1,47 @@
 import styled from "styled-components"
 import { BiExit } from "react-icons/bi"
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai"
+import { useContext, useEffect } from "react"
+import { AuthContext } from "../Contexts/AuthContext"
+import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export default function HomePage() {
+  const { user, login } = useContext(AuthContext);
+  const navigate = useNavigate()
+
+
+  console.log(user);
+
+
+  if (!user) {
+    return (
+      <>
+        <h1>Não está logado</h1>
+        <Link to={'/'}>
+          <h2>Login</h2>
+        </Link>
+      </>
+    )
+  }
   return (
     <HomeContainer>
       <Header>
-        <h1>Olá, Fulano</h1>
+        <h1>Olá, {user.name}</h1>
         <BiExit />
       </Header>
 
       <TransactionsContainer>
         <ul>
+          {/* {user.ops.map((x) => {
+            <ListItemContainer>
+              <div>
+                <span>today</span>
+                <strong>{x.descri}</strong>
+              </div>
+              <Value color={"negativo"? x.tipo === 'saida': "positivo"}>{x.valor}</Value>
+            </ListItemContainer>
+          })} */}
           <ListItemContainer>
             <div>
               <span>30/11</span>
@@ -31,17 +61,17 @@ export default function HomePage() {
 
         <article>
           <strong>Saldo</strong>
-          <Value color={"positivo"}>2880,00</Value>
+          <Value color={"positivo"? user.saldo <= 0 : "negativo"}>2880,00</Value>
         </article>
       </TransactionsContainer>
 
 
       <ButtonsContainer>
-        <button>
+        <button onClick={() => {navigate('/nova-transacao/entrada')}}>
           <AiOutlinePlusCircle />
           <p>Nova <br /> entrada</p>
         </button>
-        <button>
+        <button onClick={() => {navigate('/nova-transacao/saida')}}>
           <AiOutlineMinusCircle />
           <p>Nova <br />saída</p>
         </button>
