@@ -54,11 +54,11 @@ export default function TransactionsPage() {
     <TransactionsContainer>
       <h1>Nova TRANSAÇÃO</h1>
       <form onSubmit={postT}>
-        <input placeholder="Valor" type="text" value={valor} onChange={handleChange}/>
+        <input data-test="registry-amount-input" placeholder="Valor" type="text" value={valor} onChange={handleChange}/>
 
-        <input placeholder="Descrição" type="text" value={descri} onChange={(event) => handleForm(event, setDescri)}/>
+        <input data-test="registry-name-input" placeholder="Descrição" type="text" value={descri} onChange={(event) => handleForm(event, setDescri)}/>
 
-        <button>Salvar TRANSAÇÃO</button>
+        <button data-test="registry-save">Salvar TRANSAÇÃO</button>
       </form>
     </TransactionsContainer>
   )

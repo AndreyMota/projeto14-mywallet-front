@@ -46,11 +46,11 @@ export default function SignUpPage() {
     <SingUpContainer>
       <form onSubmit={cadUser}>
         <MyWalletLogo />
-        <input placeholder="Nome" onChange={(event) => handleForm(event, setNome)} value={nome} type="text" />
-        <input placeholder="E-mail" onChange={(event) => handleForm(event, setEmail)} value={email} type="email" />
-        <input placeholder="Senha" onChange={(event) => handleForm(event, setSenha)} value={senha} type="password" autocomplete="new-password" />
-        <input placeholder="Confirme a senha" onChange={(event) => handleForm(event, setSenha2)} value={senha2} type="password" autocomplete="new-password" />
-        <button>Cadastrar</button>
+        <input data-test="name" placeholder="Nome" onChange={(event) => handleForm(event, setNome)} value={nome} type="text" />
+        <input data-test="email" placeholder="E-mail" onChange={(event) => handleForm(event, setEmail)} value={email} type="email" />
+        <input data-test="password" placeholder="Senha" onChange={(event) => handleForm(event, setSenha)} value={senha} type="password" autocomplete="new-password" />
+        <input data-test="conf-password" placeholder="Confirme a senha" onChange={(event) => handleForm(event, setSenha2)} value={senha2} type="password" autocomplete="new-password" />
+        <button data-test="sign-up-submit">Cadastrar</button>
       </form>
 
       <Link to={'/'}>
